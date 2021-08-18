@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4db16836-2240-4831-9994-8d5c6d1277af">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="b3b9fe8b-5529-4dde-9b40-81dfeaebc554"/>
+	<subDataset name="dataset2" uuid="659f80fe-6af7-422b-aafb-c916ad5bd1ef"/>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pemasukan.`id` AS pemasukan_id,
+     pemasukan.`id_barang` AS pemasukan_id_barang,
+     pemasukan.`id_karyawan` AS pemasukan_id_karyawan,
+     pemasukan.`qty` AS pemasukan_qty,
+     pemasukan.`total` AS pemasukan_total,
+     pemasukan.`created_at` AS pemasukan_created_at,
+     karyawan.`id` AS karyawan_id,
+     karyawan.`jenis_kelamin` AS karyawan_jenis_kelamin,
+     karyawan.`nama` AS karyawan_nama,
+     karyawan.`no_telp` AS karyawan_no_telp,
+     karyawan.`alamat` AS karyawan_alamat,
+     data_barang.`id` AS data_barang_id,
+     data_barang.`kode_brg` AS data_barang_kode_brg,
+     data_barang.`nama_brg` AS data_barang_nama_brg,
+     data_barang.`size` AS data_barang_size,
+     data_barang.`harga` AS data_barang_harga,
+     data_barang.`stock` AS data_barang_stock
+FROM
+     `karyawan` karyawan INNER JOIN `pemasukan` pemasukan ON karyawan.`id` = pemasukan.`id_karyawan`
+     INNER JOIN `data_barang` data_barang ON pemasukan.`id_barang` = data_barang.`id`
+WHERE
+     pemasukan.`created_at` BETWEEN $P{startDate} and $P{endDate}]]>
+	</queryString>
+	<field name="pemasukan_id" class="java.lang.Integer"/>
+	<field name="pemasukan_id_barang" class="java.lang.Integer"/>
+	<field name="pemasukan_id_karyawan" class="java.lang.Integer"/>
+	<field name="pemasukan_qty" class="java.lang.Integer"/>
+	<field name="pemasukan_total" class="java.lang.Integer"/>
+	<field name="pemasukan_created_at" class="java.sql.Date"/>
+	<field name="karyawan_id" class="java.lang.Integer"/>
+	<field name="karyawan_jenis_kelamin" class="java.lang.String"/>
+	<field name="karyawan_nama" class="java.lang.String"/>
+	<field name="karyawan_no_telp" class="java.lang.String"/>
+	<field name="karyawan_alamat" class="java.lang.String"/>
+	<field name="data_barang_id" class="java.lang.Integer"/>
+	<field name="data_barang_kode_brg" class="java.lang.String"/>
+	<field name="data_barang_nama_brg" class="java.lang.String"/>
+	<field name="data_barang_size" class="java.lang.String"/>
+	<field name="data_barang_harga" class="java.lang.Integer"/>
+	<field name="data_barang_stock" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="84" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="83f6d60d-3f7d-400e-9cb9-dfc632715754" x="413" y="0" width="142" height="20"/>
+				<textElement>
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="361262fc-1d73-4df6-a928-d642aaa3ef8b" x="0" y="0" width="219" height="31"/>
+				<textElement>
+					<font fontName="Poppins" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Pemasukan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="361262fc-1d73-4df6-a928-d642aaa3ef8b" x="0" y="31" width="198" height="31"/>
+				<textElement>
+					<font fontName="Poppins" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bulanan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e3a41f72-8dcf-4bd3-ba29-f523219a797b" x="338" y="19" width="87" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pembelian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="90abdfd8-333d-40b2-b23d-d1f7507bda07" x="11" y="19" width="52" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3b68cab5-2b13-45ea-9149-9eb34f8a5302" x="77" y="19" width="73" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed07304f-2c33-43d0-b06b-77a1f81a48d8" x="170" y="19" width="67" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Karyawan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f17548db-1c2c-4aa6-9321-5422b5afb499" x="255" y="19" width="58" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bc8cc7ed-63ee-40bb-9a3d-3c1af247e2df" x="445" y="19" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Pembelian]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement uuid="14c8f96b-7868-446a-bebd-123881149df4" x="338" y="8" width="87" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pemasukan_total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="a7d58765-fcb9-4986-b551-7a1b35db7fcb" x="0" y="0" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="ac745247-b5fd-4b11-9617-5b2c5c4192d9" x="11" y="8" width="52" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pemasukan_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7e3f0585-ccd8-4e3f-94aa-673186c40236" x="255" y="8" width="58" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pemasukan_qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d21ee984-9520-4d16-a6f3-c48de10e6355" x="445" y="8" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MM/dd/yyyy").format($F{pemasukan_created_at})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0e3d88a0-a78c-43d4-a7c8-f347e18eb3b7" x="170" y="8" width="67" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{karyawan_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cdf36a33-5346-4c17-af62-04aecea174cd" x="77" y="8" width="73" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{data_barang_nama_brg}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

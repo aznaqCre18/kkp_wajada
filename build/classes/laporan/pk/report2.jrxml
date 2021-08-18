@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5bed2a97-5472-4bb9-94b8-ed5ebe863d7c">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pengeluaran.`id` AS pengeluaran_id,
+     pengeluaran.`id_barang` AS pengeluaran_id_barang,
+     pengeluaran.`id_karyawan` AS pengeluaran_id_karyawan,
+     pengeluaran.`id_supplier` AS pengeluaran_id_supplier,
+     pengeluaran.`qty` AS pengeluaran_qty,
+     pengeluaran.`total` AS pengeluaran_total,
+     pengeluaran.`created_at` AS pengeluaran_created_at,
+     data_barang.`id` AS data_barang_id,
+     data_barang.`kode_brg` AS data_barang_kode_brg,
+     data_barang.`nama_brg` AS data_barang_nama_brg,
+     data_barang.`size` AS data_barang_size,
+     data_barang.`harga` AS data_barang_harga,
+     data_barang.`stock` AS data_barang_stock,
+     karyawan.`id` AS karyawan_id,
+     karyawan.`jenis_kelamin` AS karyawan_jenis_kelamin,
+     karyawan.`nama` AS karyawan_nama,
+     karyawan.`no_telp` AS karyawan_no_telp,
+     karyawan.`alamat` AS karyawan_alamat,
+     supplier.`id` AS supplier_id,
+     supplier.`nama` AS supplier_nama,
+     supplier.`alamat` AS supplier_alamat,
+     supplier.`no_telp` AS supplier_no_telp
+FROM
+     `data_barang` data_barang INNER JOIN `pengeluaran` pengeluaran ON data_barang.`id` = pengeluaran.`id_barang`
+     INNER JOIN `karyawan` karyawan ON pengeluaran.`id_karyawan` = karyawan.`id`
+     INNER JOIN `supplier` supplier ON pengeluaran.`id_supplier` = supplier.`id`
+WHERE
+     pengeluaran.`created_at` BETWEEN $P{startDate} and $P{endDate}]]>
+	</queryString>
+	<field name="pengeluaran_id" class="java.lang.Integer"/>
+	<field name="pengeluaran_id_barang" class="java.lang.Integer"/>
+	<field name="pengeluaran_id_karyawan" class="java.lang.Integer"/>
+	<field name="pengeluaran_id_supplier" class="java.lang.Integer"/>
+	<field name="pengeluaran_qty" class="java.lang.Integer"/>
+	<field name="pengeluaran_total" class="java.lang.Integer"/>
+	<field name="pengeluaran_created_at" class="java.sql.Timestamp"/>
+	<field name="data_barang_id" class="java.lang.Integer"/>
+	<field name="data_barang_kode_brg" class="java.lang.String"/>
+	<field name="data_barang_nama_brg" class="java.lang.String"/>
+	<field name="data_barang_size" class="java.lang.String"/>
+	<field name="data_barang_harga" class="java.lang.Integer"/>
+	<field name="data_barang_stock" class="java.lang.Integer"/>
+	<field name="karyawan_id" class="java.lang.Integer"/>
+	<field name="karyawan_jenis_kelamin" class="java.lang.String"/>
+	<field name="karyawan_nama" class="java.lang.String"/>
+	<field name="karyawan_no_telp" class="java.lang.String"/>
+	<field name="karyawan_alamat" class="java.lang.String"/>
+	<field name="supplier_id" class="java.lang.Integer"/>
+	<field name="supplier_nama" class="java.lang.String"/>
+	<field name="supplier_alamat" class="java.lang.String"/>
+	<field name="supplier_no_telp" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="cb720c43-ddea-4ccd-9d5e-93a9cec3c178" x="426" y="0" width="129" height="20"/>
+				<textElement>
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6ba45f61-82dd-4d81-8a43-3f3ff8701e8e" x="0" y="0" width="269" height="30"/>
+				<textElement>
+					<font fontName="Poppins" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Pengeluaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ba45f61-82dd-4d81-8a43-3f3ff8701e8e" x="0" y="30" width="269" height="31"/>
+				<textElement>
+					<font fontName="Poppins" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bulanan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f900ff06-67b6-4f15-8262-3075d75d9d8e" x="330" y="20" width="42" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a78e80d8-df48-4e4e-b68a-e3efe212124a" x="0" y="20" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="684cb356-c69c-4f57-99fc-d1f696b07173" x="109" y="20" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Karyawan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4196c354-97e4-461e-9be0-de634e1461d7" x="220" y="20" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cb02edae-a727-48fb-8042-4a34d56dae05" x="384" y="20" width="66" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f71c6853-cd74-4a34-baac-9259ba1a497a" x="461" y="20" width="94" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="75bd84bc-5627-45f7-a0a2-a8fd72f11eb8" x="0" y="1" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="f28c401d-58cc-4680-8e5b-2f10cd3598cc" x="330" y="9" width="42" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pengeluaran_qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a819e0fe-3bfb-4547-893e-3006680f5222" x="0" y="9" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_barang_nama_brg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7feeb28a-55dc-4941-a70c-45f7ec2da2ac" x="109" y="9" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{karyawan_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fd732b7c-e7c8-48ce-8eef-cf47c9c4ce1f" x="220" y="9" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supplier_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2ed2fc5f-872a-4860-934a-f0f88c579bcf" x="384" y="9" width="66" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pengeluaran_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bed1c865-7f94-491c-87c4-31fab4183685" x="461" y="9" width="94" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MM/dd/yyyy").format($F{pengeluaran_created_at})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
